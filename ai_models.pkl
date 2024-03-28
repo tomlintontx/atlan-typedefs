@@ -1,0 +1,57 @@
+amends "package://developer.atlan.com/toolkits/typedef/typedef@0.1.2#/Model.pkl"
+
+t = "AI"
+a = t.toLowerCase()
+
+shared {
+  supertypeDefinition {
+    name = t
+    description = "Base class for all \(t) types."
+    superTypes { "Catalog" }
+    attributeDefs {
+      new {
+        name = "\(a)ModelVersion"
+        description = "Version of the AI model."
+        type = "string"
+      }
+      new {
+        name = "\(a)ModelType"
+        description = "Type of AI model."
+        type = "string"
+      }
+    } 
+  }
+}
+
+customTypes {
+  new {
+    assetDefinition {
+      name = "\(t)Model"
+      description = "Instances of \(t)Model in Atlan."
+      superTypes { t }
+      attributeDefs {
+        new {
+          name = "\(a)ModelStatus"
+          description = "Prodution status of the AI model."
+          type = "enum"
+          structName = "\(t)Ratings"
+          multiValued = true
+        }
+      }
+    }
+    enumerations {
+      new {
+        name = "\(t)Model"
+        description = "Ratings for an asset from the source system."
+        attributeDefs {
+          // Todo: Add more attributes
+          new {
+            name = "\(a)RatingFrom"
+            description = "Username of the user who left the rating."
+            type = "string"
+          }
+        }
+      }
+    }
+  }
+}
